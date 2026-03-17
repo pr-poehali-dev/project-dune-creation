@@ -1,97 +1,106 @@
-import { Timeline } from "@/components/ui/timeline"
+import Icon from "@/components/ui/icon"
+
+const timeline = [
+  {
+    year: "Поп",
+    title: "Мировые хиты",
+    description: "Все главные поп-релизы, новости о мировых звёздах и разборы трендов mainstream-музыки.",
+    icon: "Star",
+  },
+  {
+    year: "Рэп",
+    title: "Хип-хоп сцена",
+    description: "Русский рэп, мировой хип-хоп, баттлы, альбомы и всё, что происходит в рэп-индустрии.",
+    icon: "Mic",
+  },
+  {
+    year: "Рок",
+    title: "Гитарная культура",
+    description: "От классического рока до металла и инди. Концерты, альбомы и жизнь рок-сообщества.",
+    icon: "Guitar",
+  },
+  {
+    year: "Электро",
+    title: "Электронная музыка",
+    description: "EDM, техно, хаус и ambient. Фестивали, диджеи, новые имена электронной сцены.",
+    icon: "Radio",
+  },
+  {
+    year: "Классика",
+    title: "Академическая музыка",
+    description: "Оперы, симфонии, премьеры и гастроли ведущих оркестров и солистов мира.",
+    icon: "Music",
+  },
+]
 
 export function ApplicationsTimeline() {
-  const data = [
-    {
-      title: "Медицинское восстановление",
-      content: (
-        <div>
-          <p className="text-white text-sm md:text-base font-normal mb-6 leading-relaxed">
-            Революционное лечение паралича, травм спинного мозга и нейродегенеративных заболеваний. Восстановление
-            моторных функций и независимости миллионам людей по всему миру.
-          </p>
-          <div className="space-y-3">
-            <div className="flex items-center gap-3 text-red-400 text-sm">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              Восстановление при тетра- и параплегии
-            </div>
-            <div className="flex items-center gap-3 text-red-400 text-sm">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              Контроль симптомов БАС и Паркинсона
-            </div>
-            <div className="flex items-center gap-3 text-red-400 text-sm">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              Ускорение реабилитации после инсульта
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Когнитивное усиление",
-      content: (
-        <div>
-          <p className="text-white text-sm md:text-base font-normal mb-6 leading-relaxed">
-            Усиление человеческого интеллекта, памяти и способности к обучению. Прямые нейроинтерфейсы для
-            улучшенной когнитивной производительности и обработки информации.
-          </p>
-          <div className="space-y-3">
-            <div className="flex items-center gap-3 text-red-400 text-sm">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              Улучшение памяти и оптимизация запоминания
-            </div>
-            <div className="flex items-center gap-3 text-red-400 text-sm">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              Ускоренное обучение и освоение навыков
-            </div>
-            <div className="flex items-center gap-3 text-red-400 text-sm">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              Перевод языков в реальном времени
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Цифровая интеграция",
-      content: (
-        <div>
-          <p className="text-white text-sm md:text-base font-normal mb-6 leading-relaxed">
-            Бесшовное соединение человеческого сознания с цифровыми системами. Управление устройствами,
-            доступ к информации и общение силой мысли.
-          </p>
-          <div className="space-y-3">
-            <div className="flex items-center gap-3 text-red-400 text-sm">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              Управление устройствами силой мысли
-            </div>
-            <div className="flex items-center gap-3 text-red-400 text-sm">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              Прямой доступ к интернету и облаку
-            </div>
-            <div className="flex items-center gap-3 text-red-400 text-sm">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              Телепатические сети связи
-            </div>
-          </div>
-        </div>
-      ),
-    },
-  ]
-
   return (
-    <section id="applications" className="py-20 bg-black">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
+    <section id="genres" className="py-24 bg-zinc-950">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6">Трансформирующие применения</h2>
-          <p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            Технологии SynapseAI открывают беспрецедентные возможности для усиления человека, медицинского
-            лечения и цифровой интеграции в множестве областей.
+          <div className="inline-flex items-center gap-2 text-purple-400 text-sm font-geist tracking-widest uppercase mb-4">
+            <Icon name="Layers" size={14} />
+            <span>По жанрам</span>
+          </div>
+          <h2 className="font-orbitron text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            Охватываем <span className="text-purple-500">все жанры</span>
+          </h2>
+          <p className="font-geist text-gray-400 text-lg max-w-2xl mx-auto">
+            От мировых чартов до андеграунда — мы пишем о музыке в любом её проявлении.
           </p>
         </div>
 
         <div className="relative">
-          <Timeline data={data} />
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-purple-500/20 hidden lg:block" />
+
+          <div className="space-y-12">
+            {timeline.map((item, index) => (
+              <div key={index} className={`flex flex-col lg:flex-row gap-8 items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
+                <div className="flex-1 lg:text-right">
+                  {index % 2 === 0 ? (
+                    <div className="glow-border rounded-xl p-6 hover:bg-purple-500/5 transition-all duration-300">
+                      <div className="inline-flex items-center gap-2 text-purple-400 text-xs font-geist tracking-widest uppercase mb-2">
+                        <Icon name={item.icon} size={14} fallback="Music" />
+                        <span>{item.year}</span>
+                      </div>
+                      <h3 className="font-orbitron text-white font-bold text-xl mb-2">{item.title}</h3>
+                      <p className="font-geist text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                    </div>
+                  ) : (
+                    <div className="hidden lg:block" />
+                  )}
+                </div>
+
+                <div className="hidden lg:flex w-12 h-12 rounded-full bg-purple-500/20 border border-purple-500/40 items-center justify-center z-10 flex-shrink-0">
+                  <Icon name={item.icon} size={20} className="text-purple-400" fallback="Music" />
+                </div>
+
+                <div className="flex-1">
+                  {index % 2 === 1 ? (
+                    <div className="glow-border rounded-xl p-6 hover:bg-purple-500/5 transition-all duration-300">
+                      <div className="inline-flex items-center gap-2 text-purple-400 text-xs font-geist tracking-widest uppercase mb-2">
+                        <Icon name={item.icon} size={14} fallback="Music" />
+                        <span>{item.year}</span>
+                      </div>
+                      <h3 className="font-orbitron text-white font-bold text-xl mb-2">{item.title}</h3>
+                      <p className="font-geist text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                    </div>
+                  ) : (
+                    <div className="hidden lg:block" />
+                  )}
+
+                  <div className="lg:hidden glow-border rounded-xl p-6 hover:bg-purple-500/5 transition-all duration-300">
+                    <div className="inline-flex items-center gap-2 text-purple-400 text-xs font-geist tracking-widest uppercase mb-2">
+                      <Icon name={item.icon} size={14} fallback="Music" />
+                      <span>{item.year}</span>
+                    </div>
+                    <h3 className="font-orbitron text-white font-bold text-xl mb-2">{item.title}</h3>
+                    <p className="font-geist text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

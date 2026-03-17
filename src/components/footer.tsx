@@ -1,126 +1,72 @@
-import { Github, Twitter, Linkedin, Mail } from "lucide-react"
+import Icon from "@/components/ui/icon"
 
 export function Footer() {
   return (
-    <footer className="bg-black border-t border-red-500/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
-            <h2 className="font-orbitron text-2xl font-bold text-white mb-4">
-              Synapse<span className="text-red-500">AI</span>
-            </h2>
-            <p className="font-space-mono text-gray-300 mb-6 max-w-md">
-              Продвигаем будущее нейросвязи с передовыми технологиями интерфейса мозг-компьютер.
+    <footer className="bg-black border-t border-purple-500/10 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-2 mb-4">
+              <Icon name="Music2" size={22} className="text-purple-500" />
+              <h3 className="font-orbitron text-xl font-bold text-white">
+                Beat<span className="text-purple-500">Wave</span>
+              </h3>
+            </div>
+            <p className="font-geist text-gray-400 text-sm leading-relaxed max-w-xs">
+              Независимое музыкальное медиа. Пишем о музыке честно и с любовью с 2016 года.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-red-500 transition-colors duration-200">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-red-500 transition-colors duration-200">
-                <Github size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-red-500 transition-colors duration-200">
-                <Linkedin size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-red-500 transition-colors duration-200">
-                <Mail size={20} />
-              </a>
+            <div className="flex gap-3 mt-5">
+              {[
+                { icon: "Youtube", label: "YouTube" },
+                { icon: "Instagram", label: "Instagram" },
+                { icon: "Twitter", label: "Twitter" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href="#"
+                  className="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center hover:bg-purple-500/20 transition-colors"
+                  aria-label={s.label}
+                >
+                  <Icon name={s.icon} size={16} className="text-purple-400" fallback="Link" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Product */}
           <div>
-            <h3 className="font-orbitron text-white font-semibold mb-4">Продукт</h3>
+            <h4 className="font-orbitron text-white font-bold text-sm mb-4 uppercase tracking-wider">Рубрики</h4>
             <ul className="space-y-2">
-              <li>
-                <a
-                  href="#technology"
-                  className="font-space-mono text-gray-400 hover:text-red-500 transition-colors duration-200"
-                >
-                  Технологии
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#applications"
-                  className="font-space-mono text-gray-400 hover:text-red-500 transition-colors duration-200"
-                >
-                  Применения
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#safety"
-                  className="font-space-mono text-gray-400 hover:text-red-500 transition-colors duration-200"
-                >
-                  Безопасность
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#faq"
-                  className="font-space-mono text-gray-400 hover:text-red-500 transition-colors duration-200"
-                >
-                  Вопросы
-                </a>
-              </li>
+              {["Новости", "Рецензии", "Интервью", "Чарты", "Концерты", "Подборки"].map((item) => (
+                <li key={item}>
+                  <a href="#" className="font-geist text-gray-400 text-sm hover:text-purple-400 transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <h3 className="font-orbitron text-white font-semibold mb-4">Компания</h3>
+            <h4 className="font-orbitron text-white font-bold text-sm mb-4 uppercase tracking-wider">Редакция</h4>
             <ul className="space-y-2">
-              <li>
-                <a href="#" className="font-space-mono text-gray-400 hover:text-red-500 transition-colors duration-200">
-                  О нас
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-space-mono text-gray-400 hover:text-red-500 transition-colors duration-200">
-                  Карьера
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-space-mono text-gray-400 hover:text-red-500 transition-colors duration-200">
-                  Пресса
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-space-mono text-gray-400 hover:text-red-500 transition-colors duration-200">
-                  Контакты
-                </a>
-              </li>
+              {["О нас", "Авторы", "Стать автором", "Реклама", "Контакты", "Политика конфиденциальности"].map((item) => (
+                <li key={item}>
+                  <a href="#" className="font-geist text-gray-400 text-sm hover:text-purple-400 transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-8 pt-8 border-t border-red-500/20">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="font-space-mono text-gray-400 text-sm">2025 SynapseAI. Все права защищены.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a
-                href="#"
-                className="font-space-mono text-gray-400 hover:text-red-500 text-sm transition-colors duration-200"
-              >
-                Конфиденциальность
-              </a>
-              <a
-                href="#"
-                className="font-space-mono text-gray-400 hover:text-red-500 text-sm transition-colors duration-200"
-              >
-                Условия использования
-              </a>
-              <a
-                href="#"
-                className="font-space-mono text-gray-400 hover:text-red-500 text-sm transition-colors duration-200"
-              >
-                Cookie-политика
-              </a>
-            </div>
-          </div>
+        <div className="border-t border-purple-500/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="font-geist text-gray-500 text-sm">
+            © 2024 BeatWave. Все права защищены.
+          </p>
+          <p className="font-geist text-gray-600 text-xs">
+            Музыка — это жизнь 🎵
+          </p>
         </div>
       </div>
     </footer>

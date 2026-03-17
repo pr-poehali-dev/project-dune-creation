@@ -2,6 +2,8 @@ import { Canvas, extend, useFrame } from "@react-three/fiber"
 import { useAspect, useTexture } from "@react-three/drei"
 import { useMemo, useRef, useState, useEffect } from "react"
 import * as THREE from "three"
+import { Button } from "@/components/ui/button"
+import Icon from "@/components/ui/icon"
 
 const TEXTUREMAP = { src: "https://i.postimg.cc/XYwvXN8D/img-4.png" }
 const DEPTHMAP = { src: "https://i.postimg.cc/2SHKQh2q/raw-4.webp" }
@@ -32,7 +34,6 @@ const Scene = () => {
       uniform float uTime;
       varying vec2 vUv;
 
-      // Simple noise function
       float random(vec2 st) {
         return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
       }
@@ -51,15 +52,12 @@ const Scene = () => {
       void main() {
         vec2 uv = vUv;
 
-        // Depth-based displacement
         float depth = texture2D(uDepthMap, uv).r;
         vec2 displacement = depth * uPointer * 0.01;
         vec2 distortedUv = uv + displacement;
 
-        // Base texture
         vec4 baseColor = texture2D(uTexture, distortedUv);
 
-        // Create scanning effect
         float aspect = ${WIDTH}.0 / ${HEIGHT}.0;
         vec2 tUv = vec2(uv.x * aspect, uv.y);
         vec2 tiling = vec2(120.0);
@@ -69,13 +67,11 @@ const Scene = () => {
         float dist = length(tiledUv);
         float dot = smoothstep(0.5, 0.49, dist) * brightness;
 
-        // Flow effect based on progress
         float flow = 1.0 - smoothstep(0.0, 0.02, abs(depth - uProgress));
 
-        // Red scanning overlay
-        vec3 mask = vec3(dot * flow * 10.0, 0.0, 0.0);
+        // Purple-violet scanning overlay
+        vec3 mask = vec3(dot * flow * 5.0, 0.0, dot * flow * 10.0);
 
-        // Combine effects
         vec3 final = baseColor.rgb + mask;
 
         gl_FragColor = vec4(final, 1.0);
@@ -114,8 +110,8 @@ const Scene = () => {
 }
 
 export const Hero3DWebGL = () => {
-  const titleWords = "Synapse AI".split(" ")
-  const subtitle = "Нейроинтерфейсы нового поколения."
+  const titleWords = "Beat Wave".split(" ")
+  const subtitle = "Главный источник музыкальных новостей."
   const [visibleWords, setVisibleWords] = useState(0)
   const [subtitleVisible, setSubtitleVisible] = useState(false)
   const [delays, setDelays] = useState<number[]>([])
@@ -153,42 +149,60 @@ export const Hero3DWebGL = () => {
                 key={index}
                 className={index < visibleWords ? "fade-in" : ""}
                 style={{
-                  animationDelay: `${index * 0.13 + (delays[index] || 0)}s`,
-                  opacity: index < visibleWords ? undefined : 0,
+                  opacity: index < visibleWords ? 1 : 0,
+                  animationDelay: `${delays[index] || 0}s`,
                 }}
               >
-                {word}
+                {index === 1 ? (
+                  <span className="text-purple-500">{word}</span>
+                ) : (
+                  word
+                )}
               </div>
             ))}
           </div>
         </div>
-        <div className="text-xs md:text-xl xl:text-2xl 2xl:text-3xl mt-2 overflow-hidden text-white font-bold max-w-4xl mx-auto text-center px-4">
-          <div
-            className={subtitleVisible ? "fade-in-subtitle" : ""}
-            style={{
-              animationDelay: `${titleWords.length * 0.13 + 0.2 + subtitleDelay}s`,
-              opacity: subtitleVisible ? undefined : 0,
-            }}
-          >
-            {subtitle}
-          </div>
+
+        <div
+          className={`mt-4 text-sm md:text-base lg:text-lg font-geist text-gray-300 tracking-widest normal-case ${subtitleVisible ? "fade-in-subtitle" : ""}`}
+          style={{
+            opacity: subtitleVisible ? 1 : 0,
+            animationDelay: `${subtitleDelay}s`,
+          }}
+        >
+          {subtitle}
+        </div>
+
+        <div
+          className={`mt-2 text-xs md:text-sm font-geist text-purple-400/70 tracking-wider normal-case ${subtitleVisible ? "fade-in-subtitle" : ""}`}
+          style={{ opacity: subtitleVisible ? 1 : 0, animationDelay: `${subtitleDelay + 0.2}s` }}
+        >
+          Релизы · Интервью · Чарты · Концерты
         </div>
       </div>
 
-      <Canvas
-        flat
-        gl={{
-          antialias: true,
-          alpha: false,
-          powerPreference: "high-performance",
+      <div
+        className="absolute bottom-10 left-1/2 z-[70] flex gap-4"
+        style={{
+          transform: "translateX(-50%)",
+          opacity: subtitleVisible ? 1 : 0,
+          transition: "opacity 1s ease-out 0.5s",
+          pointerEvents: subtitleVisible ? "auto" : "none",
         }}
-        camera={{ position: [0, 0, 1] }}
-        style={{ background: "#000000" }}
       >
-        <Scene />
-      </Canvas>
+        <Button className="bg-purple-600 hover:bg-purple-700 text-white font-geist px-8 py-3 text-base border-0">
+          Читать новости
+        </Button>
+        <Button variant="outline" className="border-purple-500/50 text-white hover:bg-purple-500/10 font-geist px-8 py-3 text-base bg-transparent">
+          Подписаться
+        </Button>
+      </div>
+
+      <div className="absolute inset-0 z-0">
+        <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+          <Scene />
+        </Canvas>
+      </div>
     </div>
   )
 }
-
-export default Hero3DWebGL

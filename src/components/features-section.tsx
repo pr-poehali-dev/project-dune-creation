@@ -1,85 +1,68 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import Icon from "@/components/ui/icon"
 
 const features = [
   {
-    title: "Адаптивная нейрообработка",
-    description: "Самооптимизирующиеся алгоритмы, которые обучаются на нейронных паттернах и улучшают интерпретацию сигналов.",
-    icon: "brain",
-    badge: "ИИ",
+    icon: "Newspaper",
+    title: "Горячие новости",
+    description: "Первыми узнавайте о релизах, скандалах и событиях из мира музыки. Обновления каждый час.",
   },
   {
-    title: "Медицинская защита",
-    description: "Шифрование по стандартам FDA со сквозной защитой конфиденциальных нейронных данных.",
-    icon: "lock",
-    badge: "Сертификат",
+    icon: "Mic2",
+    title: "Эксклюзивные интервью",
+    description: "Разговоры с артистами, продюсерами и музыкальными критиками. Взгляд изнутри индустрии.",
   },
   {
-    title: "Интуитивное управление",
-    description: "Естественная трансляция мыслей в действия с откликом менее миллисекунды и точностью 99,7%.",
-    icon: "globe",
-    badge: "Точность",
+    icon: "BarChart3",
+    title: "Актуальные чарты",
+    description: "Мировые и российские чарты в реальном времени. Billboard, Яндекс.Музыка, Spotify.",
   },
   {
-    title: "Предиктивная калибровка",
-    description: "ML-модели, которые предугадывают намерения пользователя и оптимизируют нейронные пути.",
-    icon: "zap",
-    badge: "Умный",
+    icon: "Calendar",
+    title: "Афиша концертов",
+    description: "Все предстоящие концерты и фестивали в одном месте. Не пропустите любимых артистов.",
   },
   {
-    title: "Биометрическая интеграция",
-    description: "Бесшовная синхронизация с мониторингом жизненных показателей для контроля здоровья.",
-    icon: "link",
-    badge: "Связь",
+    icon: "Headphones",
+    title: "Рецензии альбомов",
+    description: "Подробные обзоры новых альбомов от профессиональных музыкальных критиков.",
   },
   {
-    title: "Поддержка XR",
-    description: "Нативная совместимость с AR/VR-средами для терапевтических и рабочих приложений.",
-    icon: "target",
-    badge: "XR Ready",
+    icon: "TrendingUp",
+    title: "Тренды и вирусное",
+    description: "Следите за вирусными треками, мемами и культурными явлениями в музыкальном мире.",
   },
 ]
 
 export function FeaturesSection() {
   return (
-    <section className="py-24 px-6 bg-background">
-      <div className="max-w-7xl mx-auto">
+    <section id="news" className="py-24 bg-black">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4 font-sans">Возможности нового поколения</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Почувствуйте будущее с технологиями, которые переопределяют возможное
+          <div className="inline-flex items-center gap-2 text-purple-400 text-sm font-geist tracking-widest uppercase mb-4">
+            <Icon name="Zap" size={14} />
+            <span>Всё о музыке</span>
+          </div>
+          <h2 className="font-orbitron text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            Музыкальная журналистика<br />
+            <span className="text-purple-500">нового уровня</span>
+          </h2>
+          <p className="font-geist text-gray-400 text-lg max-w-2xl mx-auto">
+            BeatWave — это не просто новости. Это живой пульс музыкальной индустрии: от поп-хитов до андеграунда.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <Card
+            <div
               key={index}
-              className="glow-border hover:shadow-lg transition-all duration-300 slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="glow-border rounded-xl p-6 hover:bg-purple-500/5 transition-all duration-300 group cursor-pointer"
             >
-              <CardHeader>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-3xl">
-                    {feature.icon === "brain" && "&#129504;"}
-                    {feature.icon === "lock" && "&#128274;"}
-                    {feature.icon === "globe" && "&#127760;"}
-                    {feature.icon === "zap" && "&#9889;"}
-                    {feature.icon === "link" && "&#128279;"}
-                    {feature.icon === "target" && "&#127919;"}
-                  </span>
-                  <Badge variant="secondary" className="bg-accent text-accent-foreground">
-                    {feature.badge}
-                  </Badge>
-                </div>
-                <CardTitle className="text-xl font-bold text-card-foreground">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-muted-foreground leading-relaxed">
-                  {feature.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+              <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 group-hover:bg-purple-500/20 transition-colors duration-300">
+                <Icon name={feature.icon} size={24} className="text-purple-400" fallback="Music" />
+              </div>
+              <h3 className="font-orbitron text-white font-bold text-lg mb-2">{feature.title}</h3>
+              <p className="font-geist text-gray-400 text-sm leading-relaxed">{feature.description}</p>
+            </div>
           ))}
         </div>
       </div>

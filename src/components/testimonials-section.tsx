@@ -1,63 +1,68 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Icon from "@/components/ui/icon"
 
 const testimonials = [
   {
-    name: "Елена Родригес",
-    role: "Директор по нейронауке, Quantum Dynamics",
-    avatar: "/professional-woman-scientist.png",
-    content:
-      "SynapseAI изменил наш подход к нейрореабилитации. Результаты пациентов улучшились на 340% после внедрения.",
+    name: "Алексей М.",
+    role: "Меломан со стажем",
+    text: "BeatWave — первый сайт, который я открываю утром. Здесь всегда свежо, честно и без воды. Лучшее музыкальное медиа рунета.",
+    avatar: "🎧",
   },
   {
-    name: "Маркус Уильямс",
-    role: "Руководитель исследований, Stellar Analytics",
-    avatar: "/cybersecurity-expert-man.jpg",
-    content:
-      "Точность и протоколы безопасности не имеют аналогов. Мы значительно ускорили клинические испытания с платформой SynapseAI.",
+    name: "Катерина В.",
+    role: "Музыкальный блогер",
+    text: "Наконец-то нашла место, где пишут о музыке серьёзно. Рецензии развёрнутые, интервью живые. Авторы явно разбираются в теме.",
+    avatar: "🎵",
   },
   {
-    name: "Анна Ковальски",
-    role: "Вице-президент по разработке, Nova Industries",
-    avatar: "/asian-woman-tech-developer.jpg",
-    content:
-      "Интеграция прошла безупречно. Адаптивные алгоритмы понимают намерения пользователя лучше любой системы, что мы тестировали.",
+    name: "Дмитрий К.",
+    role: "Диджей, промоутер",
+    text: "Слежу за электронной секцией. Покрывают и андеграунд, и mainstream — редкий баланс. Рекомендую всем из тусовки.",
+    avatar: "🎛️",
+  },
+  {
+    name: "Маша Л.",
+    role: "Студентка музыкального колледжа",
+    text: "Читаю для общего развития и вдохновения. Узнала много нового о классике и джазе, о которых раньше не писали нигде.",
+    avatar: "🎹",
   },
 ]
 
 export function TestimonialsSection() {
   return (
-    <section className="py-24 px-6 bg-card">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-24 bg-black">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-card-foreground mb-4 font-sans">Нам доверяют лидеры</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Что говорят лидеры индустрии о нашей революционной технологии
+          <div className="inline-flex items-center gap-2 text-purple-400 text-sm font-geist tracking-widest uppercase mb-4">
+            <Icon name="Heart" size={14} />
+            <span>Читатели о нас</span>
+          </div>
+          <h2 className="font-orbitron text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            Нам <span className="text-purple-500">доверяют</span>
+          </h2>
+          <p className="font-geist text-gray-400 text-lg max-w-2xl mx-auto">
+            Тысячи читателей каждый день выбирают BeatWave как главный источник музыкальных новостей.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Card key={index} className="glow-border slide-up" style={{ animationDelay: `${index * 0.15}s` }}>
-              <CardContent className="p-6">
-                <p className="text-card-foreground mb-6 leading-relaxed italic">"{testimonial.content}"</p>
-                <div className="flex items-center gap-4">
-                  <Avatar>
-                    <AvatarImage src={testimonial.avatar || "/placeholder.svg"} alt={testimonial.name} />
-                    <AvatarFallback>
-                      {testimonial.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="font-semibold text-primary">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                  </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {testimonials.map((t, index) => (
+            <div key={index} className="glow-border rounded-xl p-6 hover:bg-purple-500/5 transition-all duration-300">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center text-2xl flex-shrink-0">
+                  {t.avatar}
                 </div>
-              </CardContent>
-            </Card>
+                <div>
+                  <div className="font-orbitron text-white font-bold text-sm">{t.name}</div>
+                  <div className="font-geist text-purple-400 text-xs mt-0.5">{t.role}</div>
+                </div>
+              </div>
+              <div className="flex gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <Icon key={i} name="Star" size={14} className="text-purple-400" />
+                ))}
+              </div>
+              <p className="font-geist text-gray-300 text-sm leading-relaxed">"{t.text}"</p>
+            </div>
           ))}
         </div>
       </div>
